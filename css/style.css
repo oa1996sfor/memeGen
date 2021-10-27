@@ -33,5 +33,12 @@ li{
 }
 
 /* buttons*/
-
+.color-inp{
+    
+    height: 30px;
+    width: 30px;
+    background-color: transparent;
+    border: none;
+    cursor: pointer;
+}
 

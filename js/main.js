@@ -3,6 +3,7 @@
 var gElCanvas;
 var gCtx;
 var base_image;
+var gStartPos;
 
 
 function init() {
@@ -36,6 +37,62 @@ function editMeme(imgId) {
 
 function addListeners() {
     addTextListner();
+    addMouseListeners();
+}
+function addMouseListeners() {
+    gElCanvas.addEventListener('mousemove', onMove)
+    gElCanvas.addEventListener('mousedown', onDown)
+    gElCanvas.addEventListener('mouseup', onUp)
+}
+
+function onDown(ev) {
+    const pos = getEvPos(ev)
+    if (!isTextClicked(pos)) {
+        setTextDrag(false);
+        onUpAndDown();
+        if(!isTextClicked(pos)){
+            onUpAndDown();
+            return; 
+        }
+    }
+    setTextDrag(true)
+    document.querySelector('canvas').style.cursor = 'move';
+    gStartPos = pos
+    console.log('hi');
+}
+
+function onMove(ev) {
+    // const circle = getCircle();
+    if (isDrag()) {
+        document.querySelector('canvas').style.cursor = 'move';
+        const pos = getEvPos(ev)
+        const dx = pos.x - gStartPos.x
+        const dy = pos.y - gStartPos.y
+        gStartPos = pos
+        moveText(dx, dy);
+        renderCanvas();
+    }
+}
+
+function onUp() {
+    setTextDrag(false)
+    document.querySelector('canvas').style.cursor = 'default';
+}
+
+function getEvPos(ev) {
+    var pos = {
+        x: ev.offsetX,
+        y: ev.offsetY
+    }
+    // if (gTouchEvs.includes(ev.type)) {
+    //     ev.preventDefault()
+    //     ev = ev.changedTouches[0]
+    //     pos = {
+    //         x: ev.pageX - ev.target.offsetLeft - ev.target.clientLeft,
+    //         y: ev.pageY - ev.target.offsetTop - ev.target.clientTop
+    //     }
+    // }
+    return pos
 }
 
 function addTextListner() {
@@ -70,12 +127,13 @@ function drawScaledImage(img) {
 }
 
 
-function drawText(text, x, y, fontSize) {
+function drawText(text, x, y, fontSize,color) {
+
 
     text = text.toUpperCase();
     gCtx.lineWidth = 2;
     gCtx.strokeStyle = 'black';
-    gCtx.fillStyle = getGmemeColor();
+    gCtx.fillStyle = color;
     gCtx.font = `${fontSize}px impact`;
     gCtx.fillText(text, x, y);
     gCtx.strokeText(text, x, y);
@@ -97,6 +155,8 @@ function openGallery() {
     document.querySelector('.meme-editor').classList.add('hidden');
     document.querySelector('.about').classList.add('hidden');
     document.querySelector('.memes').classList.add('hidden');
+    document.getElementById('inp').value ='';
+    document.querySelector('[name=fillColor]').value= '#ffffff';
 }
 function openAbout() {
     document.querySelector('.gallery').classList.add('hidden');
@@ -125,23 +185,32 @@ function onRemoveLine() {
 }
 
 function onUpAndDown() {
-    
     updateSelectedLine();
     document.getElementById('inp').value = getGmemeText();
+    document.querySelector('[name=fillColor]').value = getGmemeColor();
 }
 
 function onAddLine() {
     updateSelectedLine();
+    
     document.getElementById('inp').value = getGmemeText();
     renderCanvas();
 }
 
+function onChangeFillColor(){
+    setGmemeColor(document.querySelector('[name=fillColor]').value);
+    renderCanvas();
+}
+
 function renderCanvas() {
-    // var pos = getLinePos();
+    
     var lines = getLines();
     drawScaledImage(base_image);
     lines.forEach(line => {
-        drawText(line.txt, line.x, line.y, line.size);
+        drawText(line.txt, line.x, line.y, line.size,line.color);
     })
 
+
+
 }
+
