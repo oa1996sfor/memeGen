@@ -11,10 +11,10 @@ function init() {
     gCtx = gElCanvas.getContext('2d');
     // make_base(); //temp
     addListeners();
-  
+
 }
 
-function  renderImages(){
+function renderImages() {
     var imgs = getImgs();
     var strHtmls = imgs.map(function (img) {
         return `<li class="img-${img.id}" onclick="editMeme('${img.id}')">
@@ -24,27 +24,27 @@ function  renderImages(){
     document.querySelector('.pics').innerHTML = strHtmls.join('')
 }
 
-function editMeme(imgId){
+function editMeme(imgId) {
     //imgId is string now because of rendering
     document.querySelector('.gallery').classList.add('hidden');
     document.querySelector('.meme-editor').classList.remove('hidden');
     loadMemeToEdit(+imgId);
+    updateGmeme(imgId);
 
 }
 
 
-function addListeners(){
+function addListeners() {
     addTextListner();
 }
 
-function addTextListner(){
-    document.getElementById('inp').addEventListener('keyup', function() {
+function addTextListner() {
+    document.getElementById('inp').addEventListener('keyup', function () {
         var stringTitle = document.getElementById('inp').value;
-        // console.log(stringTitle);
-        gCtx.clearRect(0, 0,  gElCanvas.width,gElCanvas.height);
-        drawScaledImage(base_image);
-        drawText(stringTitle,100,200);
-        });
+        updateCurrLine(stringTitle);
+        gCtx.clearRect(0, 0, gElCanvas.width, gElCanvas.height);
+        renderCanvas();
+    });
 }
 
 function loadMemeToEdit(imgId) {
@@ -70,16 +70,13 @@ function drawScaledImage(img) {
 }
 
 
-function drawText(text, x, y) {
-    
-    // gCtx.font = '48px impact';
-    // gCtx.fillText(text, x, y);
-    
+function drawText(text, x, y, fontSize) {
+
     text = text.toUpperCase();
     gCtx.lineWidth = 2;
     gCtx.strokeStyle = 'black';
-    gCtx.fillStyle = 'white';
-    gCtx.font = '40px impact';
+    gCtx.fillStyle = getGmemeColor();
+    gCtx.font = `${fontSize}px impact`;
     gCtx.fillText(text, x, y);
     gCtx.strokeText(text, x, y);
 }
@@ -88,25 +85,63 @@ function drawText(text, x, y) {
 
 // change pages
 
-function openMemes(){
+function openMemes() {
     document.querySelector('.gallery').classList.add('hidden');
-    document.querySelector('.meme-editor').classList.add('hidden');    
-    document.querySelector('.about').classList.add('hidden');    
-    document.querySelector('.memes').classList.remove('hidden');    
+    document.querySelector('.meme-editor').classList.add('hidden');
+    document.querySelector('.about').classList.add('hidden');
+    document.querySelector('.memes').classList.remove('hidden');
 }
 
-function openGallery(){
+function openGallery() {
     document.querySelector('.gallery').classList.remove('hidden');
-    document.querySelector('.meme-editor').classList.add('hidden');    
-    document.querySelector('.about').classList.add('hidden');    
-    document.querySelector('.memes').classList.add('hidden');    
+    document.querySelector('.meme-editor').classList.add('hidden');
+    document.querySelector('.about').classList.add('hidden');
+    document.querySelector('.memes').classList.add('hidden');
 }
-function openAbout(){
+function openAbout() {
     document.querySelector('.gallery').classList.add('hidden');
-    document.querySelector('.meme-editor').classList.add('hidden');    
-    document.querySelector('.about').classList.remove('hidden');    
-    document.querySelector('.memes').classList.add('hidden');    
+    document.querySelector('.meme-editor').classList.add('hidden');
+    document.querySelector('.about').classList.remove('hidden');
+    document.querySelector('.memes').classList.add('hidden');
 }
 
 
+function onIncreaseFont() {
+    increaseFont();
+    renderCanvas();
 
+}
+
+function onDecreaseFont() {
+    decreaseFont();
+    renderCanvas();
+}
+
+function onRemoveLine() {
+    updateCurrLine('');
+    renderCanvas();
+    document.getElementById('inp').value = getGmemeText();
+
+}
+
+function onUpAndDown() {
+    
+    updateSelectedLine();
+    document.getElementById('inp').value = getGmemeText();
+}
+
+function onAddLine() {
+    updateSelectedLine();
+    document.getElementById('inp').value = getGmemeText();
+    renderCanvas();
+}
+
+function renderCanvas() {
+    // var pos = getLinePos();
+    var lines = getLines();
+    drawScaledImage(base_image);
+    lines.forEach(line => {
+        drawText(line.txt, line.x, line.y, line.size);
+    })
+
+}
