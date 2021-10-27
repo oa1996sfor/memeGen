@@ -1,8 +1,34 @@
 
-@font-face {
-    font-family: impactFont;
-    src: url('fonts/Impact-Font/impact.ttf');
-  }
+header{
+    display: flex;
+    justify-content: space-between;
+}
 
+button{
+    cursor: pointer;
+}
 
-  
+.meme-editor{
+    display: flex;
+    justify-content: space-between;
+}
+
+.settings-sect{
+    margin-top: 20px;
+}
+
+.hidden{
+    display: none;
+}
+
+ul{
+    display: flex;
+    flex-wrap: wrap;
+     list-style-type: none;
+}
+
+li{
+    cursor: pointer;
+    margin-left: 5px;
+}
+

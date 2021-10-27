@@ -6,12 +6,30 @@ var base_image;
 
 
 function init() {
-
+    renderImages();
     gElCanvas = document.getElementById('my-canvas');
     gCtx = gElCanvas.getContext('2d');
-    make_base(); //temp
+    // make_base(); //temp
     addListeners();
   
+}
+
+function  renderImages(){
+    var imgs = getImgs();
+    var strHtmls = imgs.map(function (img) {
+        return `<li class="img-${img.id}" onclick="editMeme('${img.id}')">
+                    <img src="memeImg/${img.id}.jpg" width="120" height="120">
+                </li>`;
+    })
+    document.querySelector('.pics').innerHTML = strHtmls.join('')
+}
+
+function editMeme(imgId){
+    //imgId is string now because of rendering
+    document.querySelector('.gallery').classList.add('hidden');
+    document.querySelector('.meme-editor').classList.remove('hidden');
+    loadMemeToEdit(+imgId);
+
 }
 
 
@@ -26,14 +44,12 @@ function addTextListner(){
         gCtx.clearRect(0, 0,  gElCanvas.width,gElCanvas.height);
         drawScaledImage(base_image);
         drawText(stringTitle,100,200);
-        
-        
         });
 }
 
-function make_base() {
-     base_image = new Image();
-    base_image.src = getImgById(1).url;
+function loadMemeToEdit(imgId) {
+    base_image = new Image();
+    base_image.src = getImgById(imgId).url;
     base_image.addEventListener('load', e => {
         drawScaledImage(base_image);
         // drawText('i am trump', 200, 100);
@@ -66,6 +82,30 @@ function drawText(text, x, y) {
     gCtx.font = '40px impact';
     gCtx.fillText(text, x, y);
     gCtx.strokeText(text, x, y);
+}
+
+
+
+// change pages
+
+function openMemes(){
+    document.querySelector('.gallery').classList.add('hidden');
+    document.querySelector('.meme-editor').classList.add('hidden');    
+    document.querySelector('.about').classList.add('hidden');    
+    document.querySelector('.memes').classList.remove('hidden');    
+}
+
+function openGallery(){
+    document.querySelector('.gallery').classList.remove('hidden');
+    document.querySelector('.meme-editor').classList.add('hidden');    
+    document.querySelector('.about').classList.add('hidden');    
+    document.querySelector('.memes').classList.add('hidden');    
+}
+function openAbout(){
+    document.querySelector('.gallery').classList.add('hidden');
+    document.querySelector('.meme-editor').classList.add('hidden');    
+    document.querySelector('.about').classList.remove('hidden');    
+    document.querySelector('.memes').classList.add('hidden');    
 }
 
 

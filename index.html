@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -7,10 +8,42 @@
     <link rel="stylesheet" href="css/style.css">
     <title>Meme Generator</title>
 </head>
+
 <body onload="init()">
-    
-    <canvas id="my-canvas" height="500" width="500" onclick="draw(event)" ></canvas>
-    <input type="text" id="inp" name="inp" placeholder="enter your text here:">
+
+    <header>
+        <div class="logo"> MEMEGENERATOR </div>
+        <nav>
+            <button class="memeBtn" onclick="openMemes()"> Memes </button>
+            <button class="galleryBtn" onclick="openGallery()"> Gallery </button>
+            <button class="aboutBtn" onclick="openAbout()"> About </button>
+
+
+        </nav>
+    </header>
+
+    <section class="meme-editor hidden">
+        <section class="canvas-container">
+            <canvas id="my-canvas" height="500" width="500" onclick="draw(event)"></canvas>
+        </section>
+        <section class="settings-sect">
+            <input type="text" id="inp" name="inp" placeholder="enter your text here:">
+        </section>
+    </section>
+
+    <section class="gallery">
+        <ul class="pics">
+           
+        </ul>
+    </section>
+
+    <section class="memes hidden">
+
+    </section>
+
+    <section class="about hidden">
+
+    </section>
 
 </body>
 

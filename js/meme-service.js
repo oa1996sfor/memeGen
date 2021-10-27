@@ -2,7 +2,7 @@
 
 var gKeywords = { 'happy': 12, 'funny puk': 1 };
 
-var gMemes = [];
+
 var gImgs = [{ id: 1, url: 'memeImg/1.jpg', keywords: ['happy'] },
 { id: 2, url: 'memeImg/2.jpg', keywords: ['happy'] },
 { id: 3, url: 'memeImg/3.jpg', keywords: ['happy'] },
@@ -36,10 +36,10 @@ var gMeme = {
 };
 
 
-function createMeme(){
-
-    
+function getImgs(){
+    return gImgs;
 }
+
 
 function getImgById(id) {
     return gImgs.find((img) => img.id === id);
