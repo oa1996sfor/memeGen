@@ -84,10 +84,12 @@
                     </button>
                     <button class="addBtn" title="add another Line" onclick="onAddLine()"> add Text </button>
             </section>
+            <button onclick="uploadImg()" class="share-container">SHARE</button>
         </section>
     </section>
 
     <section class="gallery">
+        <input type="file" class="file-input" name="image" onchange="onImgInput(event)" />
         <ul class="pics">
 
         </ul>

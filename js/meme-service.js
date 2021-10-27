@@ -27,12 +27,20 @@ var gMeme = {
     selectedLineIdx: 0,
     lines: [
         {
-            txt: 'I never eat Falafel',
+            txt: '',
             size: 40,
             align: 'left',
-            color: 'red',
-            x:0,
-            y:0
+            color: '#ffffff',
+            x:100,
+            y:100
+        },
+        {
+            txt: '',
+            size: 40,
+            align: 'left',
+            color: '#ffffff',
+            x: 100,
+            y: 400
         }
     ]
 };
