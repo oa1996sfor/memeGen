@@ -1,6 +1,7 @@
 'use strict'
 
 var gKeywords = { 'happy': 12, 'funny puk': 1 };
+var gMemes = [];
 
 
 var gImgs = [{ id: 1, url: 'memeImg/1.jpg', keywords: ['happy'] },
@@ -31,8 +32,8 @@ var gMeme = {
             size: 40,
             align: 'left',
             color: '#ffffff',
-            x:100,
-            y:100
+            x: 100,
+            y: 100
         },
         {
             txt: '',
@@ -137,4 +138,18 @@ function moveTextX(dx) {
 }
 function moveTextY(dy) {
     gMeme.lines[gMeme.selectedLineIdx].y += dy;
+}
+
+function getMemes() {
+    var memes = loadFromStorage('memes');
+    if (!memes) return gMemes;
+    gMemes = memes;
+    return gMemes;
+}
+
+function saveMeme(memeUrl) {
+    var memes = loadFromStorage('memes');
+    if (!memes) memes = [memeUrl];
+    else memes.push(memeUrl);
+    saveToStorage('memes', memes);
 }

@@ -148,6 +148,18 @@ function openMemes() {
     document.querySelector('.meme-editor').classList.add('hidden');
     document.querySelector('.about').classList.add('hidden');
     document.querySelector('.memes').classList.remove('hidden');
+    renderMemes();
+}
+
+function renderMemes(){
+    var memes = getMemes();
+    var strHtmls = memes.map(function (memeUrl) {
+        return `<li>
+                    <img src="${memeUrl}" width="120" height="120">
+                </li>`;
+    })
+    document.querySelector('.saved-memes').innerHTML = strHtmls.join('');
+
 }
 
 function openGallery() {
@@ -203,6 +215,11 @@ function onChangeFillColor(){
     renderCanvas();
 }
 
+function onSave(elLink) {
+    const data = gElCanvas.toDataURL();
+    elLink.href = data;
+}
+
 function renderCanvas() {
     
     var lines = getLines();
@@ -240,4 +257,8 @@ function renderImg(img) {
 
     gCtx.drawImage(img, 0, 0, gElCanvas.width, gElCanvas.height);
    
+}
+
+function onSaveToMemes(){
+    saveMeme(gElCanvas.toDataURL());   
 }

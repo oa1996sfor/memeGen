@@ -29,7 +29,6 @@
         <section class="settings-sect">
             <input type="text" id="inp" name="inp" placeholder="enter your text here:">
             <section class="input-settings">
-                <!-- <input class="color-inp" type="color" id="lineColor" name="lineColor" value="#000000" onchange="onChangeLineColor()" /> -->
                 <input  class="color-inp" type="color" id="fillColor" name="fillColor" value="#ffffff" onchange="onChangeFillColor()" />
                 <button class="increaseFont" title="increase font size" onclick="onIncreaseFont()"> + </button>
                 <button class="decreaseFont" title="decrease font size" onclick="onDecreaseFont()"> - </button>
@@ -84,7 +83,9 @@
                     </button>
                     <button class="addBtn" title="add another Line" onclick="onAddLine()"> add Text </button>
             </section>
-            <button onclick="uploadImg()" class="share-container">SHARE</button>
+            <button> <a href="#" onclick="onSave(this)" download="myphoto">SAVE to my computer</a> </button>
+            <button onclick="onSaveToMemes()" class="saveMemeBtn">Save to memes</button>
+            <button onclick="uploadImg()" class="share-container">SHARE On facebook</button>
         </section>
     </section>
 
@@ -96,7 +97,9 @@
     </section>
 
     <section class="memes hidden">
+        <ul class="saved-memes">
 
+        </ul>
     </section>
 
     <section class="about hidden">
@@ -108,5 +111,7 @@
 <script src="js/main.js"></script>
 <script src="js/meme-service.js"></script>
 <script src="js/darg-service.js"></script>
+<script src="js/upload-service.js"></script>
+<script src="js/storage-service.js"></script>
 
 </html>
