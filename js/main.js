@@ -58,7 +58,7 @@ function onDown(ev) {
     setTextDrag(true)
     document.querySelector('canvas').style.cursor = 'move';
     gStartPos = pos
-    console.log('hi');
+    // console.log('hi');
 }
 
 function onMove(ev) {
@@ -285,3 +285,23 @@ function toggleMenu() {
     document.body.classList.toggle('menu-open');
     document.querySelector('.main-nav').classList.toggle('unhide');   
 }
+
+async function shareImage() {
+
+    const response = await fetch(gElCanvas.toDataURL());
+    const blob = await response.blob();
+    const filesArray = [
+      new File(
+        [blob],
+        'meme.jpg',
+        {
+          type: "image/jpeg",
+          lastModified: new Date().getTime()
+        }
+     )
+    ];
+    const shareData = {
+      files: filesArray,
+    };
+    navigator.share(shareData);
+  }

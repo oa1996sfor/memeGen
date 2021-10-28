@@ -24,44 +24,45 @@
 
         </nav>
 
-        <button class="menuBtn" onclick="toggleMenu()"><svg version="1.1" id="Capa_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px"
-            viewBox="0 0 283.426 283.426" style="enable-background:new 0 0 283.426 283.426;" xml:space="preserve">
-       <g>
-           <rect x="0" y="40.84" style="fill:#010002;" width="283.426" height="47.735"/>
-           <rect x="0" y="117.282" style="fill:#010002;" width="283.426" height="47.735"/>
-           <rect x="0" y="194.851" style="fill:#010002;" width="283.426" height="47.735"/>
-       </g>
-       <g>
-       </g>
-       <g>
-       </g>
-       <g>
-       </g>
-       <g>
-       </g>
-       <g>
-       </g>
-       <g>
-       </g>
-       <g>
-       </g>
-       <g>
-       </g>
-       <g>
-       </g>
-       <g>
-       </g>
-       <g>
-       </g>
-       <g>
-       </g>
-       <g>
-       </g>
-       <g>
-       </g>
-       <g>
-       </g>
-       </svg>
+        <button class="menuBtn" onclick="toggleMenu()"><svg version="1.1" id="Capa_1" xmlns="http://www.w3.org/2000/svg"
+                xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px" viewBox="0 0 283.426 283.426"
+                style="enable-background:new 0 0 283.426 283.426;" xml:space="preserve">
+                <g>
+                    <rect x="0" y="40.84" style="fill:#010002;" width="283.426" height="47.735" />
+                    <rect x="0" y="117.282" style="fill:#010002;" width="283.426" height="47.735" />
+                    <rect x="0" y="194.851" style="fill:#010002;" width="283.426" height="47.735" />
+                </g>
+                <g>
+                </g>
+                <g>
+                </g>
+                <g>
+                </g>
+                <g>
+                </g>
+                <g>
+                </g>
+                <g>
+                </g>
+                <g>
+                </g>
+                <g>
+                </g>
+                <g>
+                </g>
+                <g>
+                </g>
+                <g>
+                </g>
+                <g>
+                </g>
+                <g>
+                </g>
+                <g>
+                </g>
+                <g>
+                </g>
+            </svg>
 
     </header>
 
@@ -70,23 +71,25 @@
             <canvas id="my-canvas" height="500" width="500"></canvas>
         </section>
         <section class="settings-sect">
-            <input type="text" id="inp" name="inp" placeholder="enter your text here:">
+            <input class="text-inp" type="text" id="inp" name="inp" placeholder="Enter your text here:">
             <section class="input-settings">
-                <input class="color-inp" type="color" id="fillColor" name="fillColor" value="#ffffff"
-                    onchange="onChangeFillColor()" />
-                <button class="increaseFont" title="increase font size" onclick="onIncreaseFont()"> + </button>
-                <button class="decreaseFont" title="decrease font size" onclick="onDecreaseFont()"> - </button>
-                <button class="delete" title="remove Line" onclick="onRemoveLine()"><svg fill="#000000"
-                        xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="10px" height="10px">
+                <input class="color-inp" title="text filling color" type="color" id="fillColor" name="fillColor"
+                    value="#ffffff" onchange="onChangeFillColor()" />
+                <button class="increaseFont settingsBtn" title="increase font size" onclick="onIncreaseFont()"> +
+                </button>
+                <button class="decreaseFont settingsBtn" title="decrease font size" onclick="onDecreaseFont()"> -
+                </button>
+                <button class="delete settingsBtn" title="remove Line" onclick="onRemoveLine()"><svg fill="#000000"
+                        xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="20px" height="20px">
                         <path
                             d="M 10 2 L 9 3 L 4 3 L 4 5 L 5 5 L 5 20 C 5 20.522222 5.1913289 21.05461 5.5683594 21.431641 C 5.9453899 21.808671 6.4777778 22 7 22 L 17 22 C 17.522222 22 18.05461 21.808671 18.431641 21.431641 C 18.808671 21.05461 19 20.522222 19 20 L 19 5 L 20 5 L 20 3 L 15 3 L 14 2 L 10 2 z M 7 5 L 17 5 L 17 20 L 7 20 L 7 5 z M 9 7 L 9 18 L 11 18 L 11 7 L 9 7 z M 13 7 L 13 18 L 15 18 L 15 7 L 13 7 z" />
                     </svg></button>
-                <button class="upAndDown" title="move between lines" onclick="onUpAndDown()">
+                <button class="upAndDown settingsBtn" title="move between lines" onclick="onUpAndDown()">
                     <?xml version="1.0" encoding="iso-8859-1"?>
                     <!-- Generator: Adobe Illustrator 16.0.0, SVG Export Plug-In . SVG Version: 6.00 Build 0)  -->
                     <!DOCTYPE svg PUBLIC "-//W3C//DTD SVG 1.1//EN" "http://www.w3.org/Graphics/SVG/1.1/DTD/svg11.dtd">
                     <svg version="1.1" id="Capa_1" xmlns="http://www.w3.org/2000/svg"
-                        xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px" width="10px" height="10px"
+                        xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px" width="20px" height="20px"
                         viewBox="0 0 907.62 907.619" style="enable-background:new 0 0 907.62 907.619;"
                         xml:space="preserve">
                         <g>
@@ -133,11 +136,19 @@
                         </g>
                     </svg>
                 </button>
-                <button class="addBtn" title="add another Line" onclick="onAddLine()"> add Text </button>
+                <button class="addBtn settingsBtn" title="add another Line" onclick="onAddLine()"> add Text </button>
             </section>
-            <button> <a href="#" onclick="onSave(this)" download="myphoto">SAVE to my computer</a> </button>
-            <button onclick="onSaveToMemes()" class="saveMemeBtn">Save to memes</button>
-            <button onclick="uploadImg()" class="share-container">SHARE On facebook</button>
+
+            <section class="export-container">
+                <button class="settingsBtn"> <a href="#" title="save to your computer" onclick="onSave(this)"
+                        download="myphoto">SAVE to my computer</a> </button>
+                <button onclick="onSaveToMemes()" title="save to memes gallery" class="saveMemeBtn settingsBtn">Save to
+                    memes</button>
+                <button onclick="uploadImg()" title="share on your facebook page"
+                    class="share-container settingsBtn facebook">SHARE On facebook</button>
+                <button onclick="shareImage()" title="share on different media"
+                    class="share-container settingsBtn">SHARE On other media</button>
+            </section>
         </section>
     </section>
 
@@ -198,7 +209,6 @@
 
     <section class="memes hidden">
         <ul class="saved-memes">
-
         </ul>
     </section>
 
