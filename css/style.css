@@ -122,6 +122,11 @@ li{
     margin-left: 5px;
 }
 
+.saved-memes{
+    /* flex-basis: 33.33%; */
+    margin-right: 75px;
+}
+
 /* buttons*/
 .color-inp{
     
@@ -213,12 +218,44 @@ body.menu-open .main-screen {
     flex-wrap: wrap;
 }
 
-/* .about >*:first-child{
-    margin-left: 50px;       
-} */
-/* .about >*:last-child{
-    margin-right: 50px;       
-} */
+
+.stickers{
+    /* background-color: blue; */
+    display: flex;
+    justify-content: center;
+    width: 100%;
+    height: 60px;
+    background-color: white;
+}
+
+.sticker:hover{
+   font-size: 50px;
+   transition: 0.5s;
+}
+
+.sticker-list{
+    background-color: white;
+    display: flex;
+}
+
+.sticker-settings{
+    margin-top: 20px;
+    display: flex;
+    justify-content: center;
+}
+
+.stickerMovers{
+    background-color: transparent;
+    font: 20px impact;
+    /* border: none; */
+    border-radius: 25px;
+    
+}
+
+.stickerMovers:hover{
+    background-color: yellowgreen;
+}
+
 
 /*small*/
 

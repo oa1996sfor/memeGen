@@ -8,6 +8,7 @@ var gStartPos;
 
 function init() {
     renderImages();
+    renderStickers();
     gElCanvas = document.getElementById('my-canvas');
     gCtx = gElCanvas.getContext('2d');
     // make_base(); //temp
@@ -22,7 +23,17 @@ function renderImages() {
                     <img src="memeImg/${img.id}.jpg" class="galImg" width="150" height="150">
                 </li>`;
     })
-    document.querySelector('.pics').innerHTML = strHtmls.join('')
+    document.querySelector('.pics').innerHTML = strHtmls.join('');
+}
+
+function  renderStickers(){
+    var stickers = getStickers();
+    var strHtmls = stickers.map(function (sticker) {
+        return `<li class="sticker" onclick="onAddSticker('${sticker}')">
+                   ${sticker}
+                </li>`;
+    })
+    document.querySelector('.sticker-list').innerHTML = strHtmls.join('');
 }
 
 function editMeme(imgId) {
@@ -71,6 +82,7 @@ function onMove(ev) {
         gStartPos = pos
         moveText(dx, dy);
         renderCanvas();
+        renderStickersOnCanvas();
     }
 }
 
@@ -101,6 +113,7 @@ function addTextListner() {
         updateCurrLine(stringTitle);
         gCtx.clearRect(0, 0, gElCanvas.width, gElCanvas.height);
         renderCanvas();
+        renderStickersOnCanvas();
     });
 }
 
@@ -128,8 +141,6 @@ function drawScaledImage(img) {
 
 
 function drawText(text, x, y, fontSize,color) {
-
-
     text = text.toUpperCase();
     gCtx.lineWidth = 2;
     gCtx.strokeStyle = 'black';
@@ -198,17 +209,20 @@ function openAbout() {
 function onIncreaseFont() {
     increaseFont();
     renderCanvas();
+    renderStickersOnCanvas();
 
 }
 
 function onDecreaseFont() {
     decreaseFont();
     renderCanvas();
+    renderStickersOnCanvas();
 }
 
 function onRemoveLine() {
     updateCurrLine('');
     renderCanvas();
+    renderStickersOnCanvas();
     document.getElementById('inp').value = getGmemeText();
 
 }
@@ -224,11 +238,13 @@ function onAddLine() {
     
     document.getElementById('inp').value = getGmemeText();
     renderCanvas();
+    renderStickersOnCanvas();
 }
 
 function onChangeFillColor(){
     setGmemeColor(document.querySelector('[name=fillColor]').value);
     renderCanvas();
+    renderStickersOnCanvas();
 }
 
 function onSave(elLink) {
@@ -237,7 +253,6 @@ function onSave(elLink) {
 }
 
 function renderCanvas() {
-    
     var lines = getLines();
     drawScaledImage(base_image);
     lines.forEach(line => {
@@ -309,4 +324,46 @@ async function shareImage() {
   function onSearch(){
     setSearched(document.querySelector('.search-inp').value);      
     renderImages();
+  }
+
+  function onAddSticker(sticker){
+    addSticker(sticker);
+    renderCanvas();
+    renderStickersOnCanvas(); 
+  }
+
+  function renderStickersOnCanvas(){
+    var stickersToAdd = getAddedStickers();
+    stickersToAdd.forEach(sticker => drawText(sticker.sticker,sticker.x,sticker.y,sticker.size,'#000000'));
+  }
+
+  function onIncreaseSticker(){
+    increaseStickerSize();
+    renderCanvas();
+    renderStickersOnCanvas();
+
+  }
+
+  function onDecreaseSticker(){
+    decreaseStickerSize();
+    renderCanvas();
+    renderStickersOnCanvas();
+  }
+
+  function onRemoveSticker(){
+      removeSticker();
+      renderCanvas();
+      renderStickersOnCanvas();
+  }
+
+  function onUpAndDownStickers(){
+    updateStickerIdx();
+    renderCanvas();
+    renderStickersOnCanvas();
+  }
+
+  function onMoveSticker(direction){
+    moveSticker(direction);
+    renderCanvas();
+    renderStickersOnCanvas();
   }

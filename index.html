@@ -149,7 +149,84 @@
                 <button onclick="shareImage()" title="share on different media"
                     class="share-container settingsBtn">SHARE On other media</button>
             </section>
+
+            <section class="stickers">
+                <ul class="sticker-list">
+
+                </ul>
+            </section>
+
+            <section class="sticker-settings">
+                <button class="increaseFont settingsBtn" title="increase sticker size" onclick="onIncreaseSticker()"> +
+                </button>
+                <button class="decreaseFont settingsBtn" title="decrease sticker size" onclick="onDecreaseSticker()"> -
+                </button>
+                <button class="delete settingsBtn" title="remove sticker" onclick="onRemoveSticker()"><svg fill="#000000"
+                    xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="20px" height="20px">
+                    <path
+                        d="M 10 2 L 9 3 L 4 3 L 4 5 L 5 5 L 5 20 C 5 20.522222 5.1913289 21.05461 5.5683594 21.431641 C 5.9453899 21.808671 6.4777778 22 7 22 L 17 22 C 17.522222 22 18.05461 21.808671 18.431641 21.431641 C 18.808671 21.05461 19 20.522222 19 20 L 19 5 L 20 5 L 20 3 L 15 3 L 14 2 L 10 2 z M 7 5 L 17 5 L 17 20 L 7 20 L 7 5 z M 9 7 L 9 18 L 11 18 L 11 7 L 9 7 z M 13 7 L 13 18 L 15 18 L 15 7 L 13 7 z" />
+                </svg></button>
+                <button class="upAndDown settingsBtn" title="move between stickers" onclick="onUpAndDownStickers()">
+                    <?xml version="1.0" encoding="iso-8859-1"?>
+                    <!-- Generator: Adobe Illustrator 16.0.0, SVG Export Plug-In . SVG Version: 6.00 Build 0)  -->
+                    <!DOCTYPE svg PUBLIC "-//W3C//DTD SVG 1.1//EN" "http://www.w3.org/Graphics/SVG/1.1/DTD/svg11.dtd">
+                    <svg version="1.1" id="Capa_1" xmlns="http://www.w3.org/2000/svg"
+                        xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px" width="20px" height="20px"
+                        viewBox="0 0 907.62 907.619" style="enable-background:new 0 0 907.62 907.619;"
+                        xml:space="preserve">
+                        <g>
+                            <path
+                                d="M591.672,907.618c28.995,0,52.5-23.505,52.5-52.5V179.839l42.191,41.688c10.232,10.11,23.567,15.155,36.898,15.155
+                            c13.541,0,27.078-5.207,37.347-15.601c20.379-20.625,20.18-53.865-0.445-74.244L626.892,15.155C617.062,5.442,603.803,0,589.993,0
+                            c-0.104,0-0.211,0-0.314,0.001c-13.923,0.084-27.244,5.694-37.03,15.6l-129.913,131.48c-20.379,20.625-20.18,53.865,0.445,74.244
+                            c20.626,20.381,53.866,20.181,74.245-0.445l41.747-42.25v676.489C539.172,884.113,562.677,907.618,591.672,907.618z" />
+                            <path
+                                d="M315.948,0c-28.995,0-52.5,23.505-52.5,52.5v676.489l-41.747-42.25c-20.379-20.625-53.62-20.825-74.245-0.445
+                            c-20.625,20.379-20.825,53.619-0.445,74.244l129.912,131.479c9.787,9.905,23.106,15.518,37.029,15.601
+                            c0.105,0.001,0.21,0.001,0.315,0.001c13.81,0,27.07-5.442,36.899-15.155L484.44,760.78c20.625-20.379,20.824-53.619,0.445-74.244
+                            c-20.379-20.626-53.62-20.825-74.245-0.445l-42.192,41.688V52.5C368.448,23.505,344.943,0,315.948,0z" />
+                        </g>
+                        <g>
+                        </g>
+                        <g>
+                        </g>
+                        <g>
+                        </g>
+                        <g>
+                        </g>
+                        <g>
+                        </g>
+                        <g>
+                        </g>
+                        <g>
+                        </g>
+                        <g>
+                        </g>
+                        <g>
+                        </g>
+                        <g>
+                        </g>
+                        <g>
+                        </g>
+                        <g>
+                        </g>
+                        <g>
+                        </g>
+                        <g>
+                        </g>
+                        <g>
+                        </g>
+                    </svg>
+                </button>
+                <button class="stickerMovers" title="move current sticker up" onclick="onMoveSticker('up')" >⬆</button>
+                <button class="stickerMovers" title="move current sticker down" onclick="onMoveSticker('down')">⬇</button>
+                <button class="stickerMovers" title="move current sticker right" onclick="onMoveSticker('right')">➡</button>
+                <button class="stickerMovers" title="move current sticker left" onclick="onMoveSticker('left')">⬅</button>
+            </section>
         </section>
+
+
+
     </section>
 
     <section class="gallery">
@@ -201,10 +278,10 @@
             </svg> <span class="uploadSpan"> UPLOAD IMAGE</span>
         </label>
         <input id="file-upload" type="file" class="file-input" name="image" onchange="onImgInput(event)" />
-        
+
         <input class="search-inp" list="keywords" placeholder="search" onchange="onSearch()">
         <datalist id="keywords">
-            <option value="all"> 
+            <option value="all">
             <option value="baby">
             <option value="obama">
             <option value="dog">
@@ -221,6 +298,8 @@
     <section class="memes hidden">
         <ul class="saved-memes">
         </ul>
+
+
     </section>
 
     <section class="about hidden">
@@ -235,5 +314,6 @@
 <script src="js/darg-service.js"></script>
 <script src="js/upload-service.js"></script>
 <script src="js/storage-service.js"></script>
+<script src="js/sticker-service.js"></script>
 
 </html>
