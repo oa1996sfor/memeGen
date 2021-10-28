@@ -305,3 +305,8 @@ async function shareImage() {
     };
     navigator.share(shareData);
   }
+
+  function onSearch(){
+    setSearched(document.querySelector('.search-inp').value);      
+    renderImages();
+  }

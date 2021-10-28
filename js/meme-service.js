@@ -2,26 +2,27 @@
 
 var gKeywords = { 'happy': 12, 'funny puk': 1 };
 var gMemes = [];
+var searchKeyword = '';
 
 
-var gImgs = [{ id: 1, url: 'memeImg/1.jpg', keywords: ['happy'] },
-{ id: 2, url: 'memeImg/2.jpg', keywords: ['happy'] },
-{ id: 3, url: 'memeImg/3.jpg', keywords: ['happy'] },
-{ id: 4, url: 'memeImg/4.jpg', keywords: ['happy'] },
-{ id: 5, url: 'memeImg/5.jpg', keywords: ['happy'] },
+var gImgs = [{ id: 1, url: 'memeImg/1.jpg', keywords: ['angry', 'trump', 'finger', 'point'] },
+{ id: 2, url: 'memeImg/2.jpg', keywords: ['cute', 'dog', 'puppy'] },
+{ id: 3, url: 'memeImg/3.jpg', keywords: ['sleep', 'cute', 'baby'] },
+{ id: 4, url: 'memeImg/4.jpg', keywords: ['sleep', 'cat', 'cute', 'keybord'] },
+{ id: 5, url: 'memeImg/5.jpg', keywords: ['baby', 'win'] },
 { id: 6, url: 'memeImg/6.jpg', keywords: ['happy'] },
-{ id: 7, url: 'memeImg/7.jpg', keywords: ['happy'] },
-{ id: 8, url: 'memeImg/8.jpg', keywords: ['happy'] },
-{ id: 9, url: 'memeImg/9.jpg', keywords: ['happy'] },
-{ id: 10, url: 'memeImg/10.jpg', keywords: ['happy'] },
-{ id: 11, url: 'memeImg/11.jpg', keywords: ['happy'] },
-{ id: 12, url: 'memeImg/12.jpg', keywords: ['happy'] },
-{ id: 13, url: 'memeImg/13.jpg', keywords: ['happy'] },
-{ id: 14, url: 'memeImg/14.jpg', keywords: ['happy'] },
-{ id: 15, url: 'memeImg/15.jpg', keywords: ['happy'] },
-{ id: 16, url: 'memeImg/16.jpg', keywords: ['happy'] },
-{ id: 17, url: 'memeImg/17.jpg', keywords: ['happy'] },
-{ id: 18, url: 'memeImg/18.jpg', keywords: ['happy'] }
+{ id: 7, url: 'memeImg/7.jpg', keywords: ['happy', 'baby'] },
+{ id: 8, url: 'memeImg/8.jpg', keywords: ['happy', 'wonka', 'relaxed'] },
+{ id: 9, url: 'memeImg/9.jpg', keywords: ['happy', 'baby'] },
+{ id: 10, url: 'memeImg/10.jpg', keywords: ['obama', 'happy'] },
+{ id: 11, url: 'memeImg/11.jpg', keywords: ['fight', 'boxing', 'kiss'] },
+{ id: 12, url: 'memeImg/12.jpg', keywords: ['happy', 'finger', 'point'] },
+{ id: 13, url: 'memeImg/13.jpg', keywords: ['happy', 'leo', 'titanic', 'drink'] },
+{ id: 14, url: 'memeImg/14.jpg', keywords: ['morbius', 'matrix'] },
+{ id: 15, url: 'memeImg/15.jpg', keywords: ['smoke', 'one'] },
+{ id: 16, url: 'memeImg/16.jpg', keywords: ['bald', 'pikard', 'x-men'] },
+{ id: 17, url: 'memeImg/17.jpg', keywords: ['finger', 'russia', 'putin'] },
+{ id: 18, url: 'memeImg/18.jpg', keywords: ['happy', 'buzz', 'toy story'] }
 ];
 var gMeme = {
     selectedImgId: 1,
@@ -48,7 +49,7 @@ var gMeme = {
 
 
 function getImgs() {
-    return gImgs;
+    return (!searchKeyword || searchKeyword === 'all') ? gImgs : gImgs.filter(img => img.keywords.includes(searchKeyword));
 }
 
 
@@ -152,4 +153,10 @@ function saveMeme(memeUrl) {
     if (!memes) memes = [memeUrl];
     else memes.push(memeUrl);
     saveToStorage('memes', memes);
+}
+
+
+function setSearched(searchVal) {
+    searchKeyword = searchVal;
+
 }
