@@ -19,7 +19,7 @@ function renderImages() {
     var imgs = getImgs();
     var strHtmls = imgs.map(function (img) {
         return `<li class="img-${img.id}" onclick="editMeme('${img.id}')">
-                    <img src="memeImg/${img.id}.jpg" width="120" height="120">
+                    <img src="memeImg/${img.id}.jpg" class="galImg" width="150" height="150">
                 </li>`;
     })
     document.querySelector('.pics').innerHTML = strHtmls.join('')
@@ -145,9 +145,14 @@ function drawText(text, x, y, fontSize,color) {
 
 function openMemes() {
     document.querySelector('.gallery').classList.add('hidden');
+    document.querySelector('.galleryBtn').classList.add('notChoosen');
     document.querySelector('.meme-editor').classList.add('hidden');
     document.querySelector('.about').classList.add('hidden');
+    document.querySelector('.aboutBtn').classList.add('notChoosen');
     document.querySelector('.memes').classList.remove('hidden');
+    document.querySelector('.memeBtn').classList.remove('notChoosen');
+    document.querySelector('.aboutImg1').classList.add('hidden');
+    document.querySelector('.aboutImg2').classList.add('hidden');
     renderMemes();
 }
 
@@ -155,7 +160,8 @@ function renderMemes(){
     var memes = getMemes();
     var strHtmls = memes.map(function (memeUrl) {
         return `<li>
-                    <img src="${memeUrl}" width="120" height="120">
+                    
+                    <img src="${memeUrl}" class="memeImg" width="150" height="150">
                 </li>`;
     })
     document.querySelector('.saved-memes').innerHTML = strHtmls.join('');
@@ -164,18 +170,28 @@ function renderMemes(){
 
 function openGallery() {
     document.querySelector('.gallery').classList.remove('hidden');
+    document.querySelector('.galleryBtn').classList.remove('notChoosen');
     document.querySelector('.meme-editor').classList.add('hidden');
     document.querySelector('.about').classList.add('hidden');
+    document.querySelector('.aboutBtn').classList.add('notChoosen');
     document.querySelector('.memes').classList.add('hidden');
+    document.querySelector('.memeBtn').classList.add('notChoosen');
     document.getElementById('inp').value ='';
     document.querySelector('[name=fillColor]').value= '#ffffff';
     document.querySelector('.file-input').value='';
+    document.querySelector('.aboutImg1').classList.add('hidden');
+    document.querySelector('.aboutImg2').classList.add('hidden');
 }
 function openAbout() {
     document.querySelector('.gallery').classList.add('hidden');
+    document.querySelector('.galleryBtn').classList.add('notChoosen');
     document.querySelector('.meme-editor').classList.add('hidden');
     document.querySelector('.about').classList.remove('hidden');
+    document.querySelector('.aboutBtn').classList.remove('notChoosen');
     document.querySelector('.memes').classList.add('hidden');
+    document.querySelector('.memeBtn').classList.add('notChoosen');
+    document.querySelector('.aboutImg1').classList.remove('hidden');
+    document.querySelector('.aboutImg2').classList.remove('hidden');
 }
 
 
@@ -248,6 +264,8 @@ function loadImageFromInput(ev, onImageReady) {
         base_image = img
         document.querySelector('.gallery').classList.add('hidden');
         document.querySelector('.meme-editor').classList.remove('hidden');
+        document.querySelector('.aboutImg1').classList.add('hidden');
+        document.querySelector('.aboutImg2').classList.add('hidden');
 
     }
     reader.readAsDataURL(ev.target.files[0])
@@ -261,4 +279,9 @@ function renderImg(img) {
 
 function onSaveToMemes(){
     saveMeme(gElCanvas.toDataURL());   
+}
+
+function toggleMenu() {
+    document.body.classList.toggle('menu-open');
+    document.querySelector('.main-nav').classList.toggle('unhide');   
 }
