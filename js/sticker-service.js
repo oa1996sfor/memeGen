@@ -8,6 +8,10 @@ var gAddedStickers = [
 ];
 
 
+function clearAddedStickers(){
+    gAddedStickers =[];
+}
+
 function getStickers() {
     return gStickers;
 }

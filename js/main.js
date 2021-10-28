@@ -40,6 +40,7 @@ function editMeme(imgId) {
     //imgId is string now because of rendering
     document.querySelector('.gallery').classList.add('hidden');
     document.querySelector('.meme-editor').classList.remove('hidden');
+    clearAddedStickers();
     loadMemeToEdit(+imgId);
     updateGmeme(imgId);
 
